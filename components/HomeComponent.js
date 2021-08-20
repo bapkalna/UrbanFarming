@@ -1,32 +1,49 @@
 import React, { Component } from "react";
-import { View, Text, ScrollView, StyleSheet, Image } from "react-native";
-import { Card } from "react-native-elements";
-import { ANIMALS } from "../shared/animals";
-import { GARDENS } from "../shared/gardens";
-import { BEES } from "../shared/bees";
-import Constants from 'expo-constants';
+import Loading from "./LoadingComponent";
+import { View, Text, ScrollView, StyleSheet } from "react-native";
+import { Card, Icon, Button } from "react-native-elements";
+import Constants from "expo-constants";
+import { connect } from "react-redux";
+import { baseUrl } from "../shared/baseUrl";
+import { createStackNavigator } from "react-navigation-stack";
+import { createDrawerNavigator, DrawerItems } from "react-navigation-drawer";
+import { createAppContainer } from "react-navigation";
+import MottoCard from './MottoComponent';
+import InfoCard from './InfoComponent';
+import LoginCard from './LoginCardComponent';
 
-function RenderItem({ item }) {
+const mapStateToProps = (state) => {
+  return {
+    animals: state.animals,
+    gardens: state.gardens,
+    bees: state.bees,
+  };
+};
+
+function RenderItem(props) {
+  const { item } = props;
+
+  if (props.isLoading) {
+    return <Loading />;
+  }
+  if (props.errMess) {
+    return (
+      <View>
+        <Text>{props.errMess}</Text>
+      </View>
+    );
+  }
+
   if (item) {
     return (
-      <Card featuredTitle={item.name} >
-        <Text style={{ margin: 10 }}>{item.description}</Text>
+      <Card featuredTitle={item.name} image={{ uri: baseUrl + item.image }}>
+        <Text >{item.description}</Text>
       </Card>
     );
   }
   return <View />;
 }
-
 class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      animals: ANIMALS,
-      gardens: GARDENS,
-      bees: BEES,
-    };
-  }
-
   static navigationOptions = {
     title: "Home",
   };
@@ -34,15 +51,34 @@ class Home extends Component {
   render() {
     return (
       <ScrollView style={{ backgroundColor: "#D5E9D7" }}>
+        <MottoCard />
+        <LoginCard />
+        <InfoCard />
         <View style={styles.container}>
-        <View style={styles.cardContainer}>
-          <RenderItem
-            item={this.state.animals.filter((animal) => animal.featured)[0]}
-          />
-          <RenderItem
-            item={this.state.gardens.filter((garden) => garden.featured)[0]}
-          />
-          <RenderItem item={this.state.bees.filter((bee) => bee.featured)[0]} />
+          <View style={styles.cardContainer}>
+            <RenderItem
+              item={
+                this.props.animals.animals.filter(
+                  (animal) => animal.featured
+                )[0]
+              }
+              isLoading={this.props.animals.isLoading}
+              errMess={this.props.animals.errMess}
+            />
+            <RenderItem
+              item={
+                this.props.gardens.gardens.filter(
+                  (garden) => garden.featured
+                )[0]
+              }
+              isLoading={this.props.gardens.isLoading}
+              errMess={this.props.gardens.errMess}
+            />
+            <RenderItem
+              item={this.props.bees.bees.filter((bee) => bee.featured)[0]}
+              isLoading={this.props.bees.isLoading}
+              errMess={this.props.bees.errMess}
+            />
           </View>
         </View>
       </ScrollView>
@@ -51,29 +87,32 @@ class Home extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      paddingTop: Constants.statusBarHeight,
-      padding: 25,
-    },
-    cardContainer: {
-      paddingTop: 30,
-      paddingBottom: 30,
-      shadowColor: '#D5E9D7',
-      shadowOpacity: 10,
-      elevation: 20,
-      borderRadius: 10,
-      backgroundColor: 'white',
-      marginTop: 20,
-    },
-    cardContent: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      marginLeft: 20,
-    }
-  });
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: Constants.statusBarHeight,
+    padding: 25,
+  },
+  cardContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: 30,
+    paddingBottom: 30,
+    shadowColor: "#D5E9D7",
+    shadowOpacity: 10,
+    elevation: 20,
+    borderRadius: 10,
+    backgroundColor: "#A8D8AD",
+    marginTop: 6,
+  },
+  cardContent: {
+    justifyContent: "space-between",
+    alignItems: "center",
+    textAlign: "center",
+    shadowColor: "#D5E9D7",
+    borderRadius: 10,
+  },
+});
 
-export default Home;
+export default connect(mapStateToProps)(Home);
