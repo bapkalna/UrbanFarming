@@ -1,13 +1,10 @@
 import React, { Component } from "react";
 import Loading from "./LoadingComponent";
 import { View, Text, ScrollView, StyleSheet } from "react-native";
-import { Card, Icon, Button } from "react-native-elements";
+import { Card } from "react-native-elements";
 import Constants from "expo-constants";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
-import { createStackNavigator } from "react-navigation-stack";
-import { createDrawerNavigator, DrawerItems } from "react-navigation-drawer";
-import { createAppContainer } from "react-navigation";
 import MottoCard from './MottoComponent';
 import InfoCard from './InfoComponent';
 import LoginCard from './LoginCardComponent';

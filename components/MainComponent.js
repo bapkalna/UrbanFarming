@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import Home from "./HomeComponent";
-import Blog from "./BlogComponent";
 import AnimalBlog from "./AnimalBlogComponent";
 import GardenBlog from "./GardenBlogComponent";
 import BeeBlog from "./BeeBlogComponent";
 import Contact from "./ContactComponent";
 import Animal from "./AnimalComponent";
+import Garden from "./GardenComponent";
+import Bee from "./BeeComponent";
 import Login from "./LoginComponent";
 import Constants from "expo-constants";
 import {
@@ -61,10 +62,10 @@ const LoginNavigator = createStackNavigator(
   }
 );
 
-const BlogNavigator = createStackNavigator(
+const AnimalBlogNavigator = createStackNavigator(
   {
-    Blog: {
-      screen: Blog,
+    AnimalBlog: {
+      screen: AnimalBlog,
       navigationOptions: ({ navigation }) => ({
         headerLeft: (
           <Icon
@@ -76,13 +77,72 @@ const BlogNavigator = createStackNavigator(
         ),
       }),
     },
-    AnimalBlog: { screen: AnimalBlog },
-    GardenBlog: { screen: GardenBlog },
-    BeeBlog: { screen: BeeBlog },
     Animal: { screen: Animal },
   },
   {
-    initialRouteName: "Blog",
+    initialRouteName: "AnimalBlog",
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: "#234A12",
+      },
+      headerTintColor: "#D5E9D7",
+      headerTitleStyle: {
+        color: "#D5E9D7",
+      },
+    },
+  }
+);
+
+const GardenBlogNavigator = createStackNavigator(
+  {
+    GardenBlog: {
+      screen: GardenBlog,
+      navigationOptions: ({ navigation }) => ({
+        headerLeft: (
+          <Icon
+            name="list"
+            type="font-awesome"
+            iconStyle={styles.stackIcon}
+            onPress={() => navigation.toggleDrawer()}
+          />
+        ),
+      }),
+    },
+    Garden: { screen: Garden},
+  },
+  {
+    initialRouteName: "GardenBlog",
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: "#234A12",
+      },
+      headerTintColor: "#D5E9D7",
+      headerTitleStyle: {
+        color: "#D5E9D7",
+      },
+    },
+  }
+);
+
+const BeeBlogNavigator = createStackNavigator(
+  {
+    BeeBlog: {
+      screen: BeeBlog,
+      navigationOptions: ({ navigation }) => ({
+        headerLeft: (
+          <Icon
+            name="list"
+            type="font-awesome"
+            iconStyle={styles.stackIcon}
+            onPress={() => navigation.toggleDrawer()}
+          />
+        ),
+      }),
+    },
+    Bee: { screen: Bee},
+  },
+  {
+    initialRouteName: "BeeBlog",
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: "#234A12",
@@ -177,11 +237,27 @@ const MainNavigator = createDrawerNavigator(
         ),
       },
     },
-    Blog: {
-      screen: BlogNavigator,
+    AnimalBlog: {
+      screen: AnimalBlogNavigator,
       navigationOptions: {
         drawerIcon: ({ tintColor }) => (
-          <Icon name="list" type="font-awesome" size={24} color={tintColor} />
+          <Icon name="paw" type="font-awesome" size={24} color={tintColor} />
+        ),
+      },
+    },
+    GardenBlog: {
+      screen: GardenBlogNavigator,
+      navigationOptions: {
+        drawerIcon: ({ tintColor }) => (
+          <Icon name="tree" type="font-awesome" size={24} color={tintColor} />
+        ),
+      },
+    },
+    BeeBlog: {
+      screen: BeeBlogNavigator,
+      navigationOptions: {
+        drawerIcon: ({ tintColor }) => (
+          <Icon name="bug" type="font-awesome" size={24} color={tintColor} />
         ),
       },
     },
