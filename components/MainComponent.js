@@ -9,6 +9,7 @@ import Garden from "./GardenComponent";
 import Bee from "./BeeComponent";
 import Login from "./LoginComponent";
 import Constants from "expo-constants";
+import LoginCard from "./LoginCardComponent";
 import {
   View,
   Platform,
@@ -42,6 +43,7 @@ const LoginNavigator = createStackNavigator(
     Login: { screen: Login },
   },
   {
+    initialRouteName: "Login",
     defaultNavigationOptions: ({ navigation }) => ({
       headerStyle: {
         backgroundColor: "#234A12",
@@ -108,7 +110,7 @@ const GardenBlogNavigator = createStackNavigator(
         ),
       }),
     },
-    Garden: { screen: Garden},
+    Garden: { screen: Garden },
   },
   {
     initialRouteName: "GardenBlog",
@@ -139,7 +141,7 @@ const BeeBlogNavigator = createStackNavigator(
         ),
       }),
     },
-    Bee: { screen: Bee},
+    Bee: { screen: Bee },
   },
   {
     initialRouteName: "BeeBlog",
@@ -271,18 +273,18 @@ const MainNavigator = createDrawerNavigator(
       },
     },
     Login: {
-        screen: LoginNavigator,
-        navigationOptions: {
-          drawerIcon: ({ tintColor }) => (
-            <Icon
-              name="sign-in"
-              type="font-awesome"
-              size={24}
-              color={tintColor}
-            />
-          ),
-        },
+      screen: LoginNavigator,
+      navigationOptions: {
+        drawerIcon: ({ tintColor }) => (
+          <Icon
+            name="sign-in"
+            type="font-awesome"
+            size={24}
+            color={tintColor}
+          />
+        ),
       },
+    },
   },
   {
     drawerBackgroundColor: "#234A12",

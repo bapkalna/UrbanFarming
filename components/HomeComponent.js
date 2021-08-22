@@ -17,6 +17,7 @@ const mapStateToProps = (state) => {
   };
 };
 
+
 function RenderItem(props) {
   const { item } = props;
 
@@ -49,7 +50,7 @@ class Home extends Component {
     return (
       <ScrollView style={{ backgroundColor: "#D5E9D7" }}>
         <MottoCard />
-        <LoginCard />
+        <LoginCard navigation={this.props.navigation}/>
         <InfoCard />
         <View style={styles.container}>
           <View style={styles.cardContainer}>
