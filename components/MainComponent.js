@@ -29,6 +29,7 @@ import {
   fetchAnimals,
   fetchGardens,
   fetchBees,
+  fetchAnimalComments,
 } from "../redux/ActionCreators";
 
 const mapDispatchToProps = {
@@ -36,6 +37,7 @@ const mapDispatchToProps = {
   fetchAnimals,
   fetchGardens,
   fetchBees,
+  fetchAnimalComments
 };
 
 const LoginNavigator = createStackNavigator(
@@ -71,7 +73,7 @@ const AnimalBlogNavigator = createStackNavigator(
       navigationOptions: ({ navigation }) => ({
         headerLeft: (
           <Icon
-            name="list"
+            name="paw"
             type="font-awesome"
             iconStyle={styles.stackIcon}
             onPress={() => navigation.toggleDrawer()}
@@ -102,7 +104,7 @@ const GardenBlogNavigator = createStackNavigator(
       navigationOptions: ({ navigation }) => ({
         headerLeft: (
           <Icon
-            name="list"
+            name="tree"
             type="font-awesome"
             iconStyle={styles.stackIcon}
             onPress={() => navigation.toggleDrawer()}
@@ -133,7 +135,7 @@ const BeeBlogNavigator = createStackNavigator(
       navigationOptions: ({ navigation }) => ({
         headerLeft: (
           <Icon
-            name="list"
+            name="bug"
             type="font-awesome"
             iconStyle={styles.stackIcon}
             onPress={() => navigation.toggleDrawer()}
@@ -266,7 +268,7 @@ const MainNavigator = createDrawerNavigator(
     Contact: {
       screen: ContactNavigator,
       navigationOptions: {
-        drawerLabel: "Contact Us",
+        drawerLabel: "Contact",
         drawerIcon: ({ tintColor }) => (
           <Icon name="phone" type="font-awesome" size={24} color={tintColor} />
         ),
@@ -309,6 +311,7 @@ class Main extends Component {
     this.props.fetchAnimals();
     this.props.fetchGardens();
     this.props.fetchBees();
+    this.props.fetchAnimalComments();
   }
 
   render() {

@@ -2,6 +2,7 @@ export const BEES = [
   {
     id: 0,
     name: "Why cities should invest in beekeeping",
+    type: "BEES",
     image: "/assets/images/beekeeper.jpeg",
     featured: false,
     description:
@@ -10,6 +11,7 @@ export const BEES = [
   {
     id: 1,
     name: "Health benefits of beekeeping",
+    type: "BEES",
     image: "/assets/images/beekeepers.jpeg",
     featured: false,
     description:
@@ -18,6 +20,7 @@ export const BEES = [
   {
     id: 2,
     name: "A Beginner's Guide to Beekeeping",
+    type: "BEES",
     image: "/assets/images/beekeepingbegin1.jpeg",
     featured: false,
     description:
@@ -26,6 +29,7 @@ export const BEES = [
   {
     id: 3,
     name: "Do my neighbors get along well with my bees",
+    type: "BEES",
     image: "/assets/images/bees1.jpeg",
     featured: true,
     description:

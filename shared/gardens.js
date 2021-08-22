@@ -3,6 +3,7 @@ export const GARDENS = [
     id: 0,
     name: "How to start a garden",
     image: "/assets/images/gardeningbegin.jpeg",
+    type: "GARDENS",
     elevation: 42,
     featured: false,
     description:
@@ -11,6 +12,7 @@ export const GARDENS = [
   {
     id: 1,
     name: "Rooftop gardens can make a world of difference",
+    type: "GARDENS",
     image: "/assets/images/rooftop.jpeg",
     elevation: 877,
     featured: false,
@@ -20,6 +22,7 @@ export const GARDENS = [
   {
     id: 2,
     name: "Watering tips for your garden",
+    type: "GARDENS",
     image: "/assets/images/watering2.jpeg",
     elevation: 2901,
     featured: false,
@@ -30,6 +33,7 @@ export const GARDENS = [
   {
     id: 3,
     name: "Greenhouse - great solution for cold climate",
+    type: "GARDENS",
     image: "/assets/images/greenhouse.jpeg",
     elevation: 1233,
     featured: true,

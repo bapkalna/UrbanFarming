@@ -1,13 +1,20 @@
 import React, { Component } from "react";
 import Loading from "./LoadingComponent";
-import { View, Text, ScrollView, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  Button,
+  TouchableOpacity,
+} from "react-native";
 import { Card } from "react-native-elements";
 import Constants from "expo-constants";
 import { connect } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
-import MottoCard from './MottoComponent';
-import InfoCard from './InfoComponent';
-import LoginCard from './LoginCardComponent';
+import MottoCard from "./MottoComponent";
+import InfoCard from "./InfoComponent";
+import LoginCard from "./LoginCardComponent";
 
 const mapStateToProps = (state) => {
   return {
@@ -16,7 +23,6 @@ const mapStateToProps = (state) => {
     bees: state.bees,
   };
 };
-
 
 function RenderItem(props) {
   const { item } = props;
@@ -35,7 +41,10 @@ function RenderItem(props) {
   if (item) {
     return (
       <Card featuredTitle={item.name} image={{ uri: baseUrl + item.image }}>
-        <Text >{item.description}</Text>
+        <Text>{item.description}</Text>
+        <TouchableOpacity>
+          <Text style={styles.text}>{item.type}</Text>
+        </TouchableOpacity>
       </Card>
     );
   }
@@ -50,7 +59,7 @@ class Home extends Component {
     return (
       <ScrollView style={{ backgroundColor: "#D5E9D7" }}>
         <MottoCard />
-        <LoginCard navigation={this.props.navigation}/>
+        <LoginCard navigation={this.props.navigation} />
         <InfoCard />
         <View style={styles.container}>
           <View style={styles.cardContainer}>
@@ -110,6 +119,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
     shadowColor: "#D5E9D7",
     borderRadius: 10,
+  },
+  text: {
+    backgroundColor: "#A8D8AD",
+    margin: 5,
+    padding: 10,
+    textAlign: "center",
   },
 });
 
