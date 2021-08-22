@@ -30,7 +30,8 @@ import {
   fetchGardens,
   fetchBees,
   fetchAnimalComments,
-  fetchGardenComments
+  fetchGardenComments, 
+  fetchBeeComments
 } from "../redux/ActionCreators";
 
 const mapDispatchToProps = {
@@ -39,7 +40,8 @@ const mapDispatchToProps = {
   fetchGardens,
   fetchBees,
   fetchAnimalComments,
-  fetchGardenComments
+  fetchGardenComments,
+  fetchBeeComments
 };
 
 const LoginNavigator = createStackNavigator(
@@ -315,6 +317,7 @@ class Main extends Component {
     this.props.fetchBees();
     this.props.fetchAnimalComments();
     this.props.fetchGardenComments();
+    this.props.fetchBeeComments();
   }
 
   render() {
